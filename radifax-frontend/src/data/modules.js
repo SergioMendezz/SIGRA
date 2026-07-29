@@ -1,8 +1,54 @@
+<<<<<<< HEAD
 ﻿// Datos y esquemas de los 10 módulos funcionales del Sistema Integral de Gestión Radifax.
+=======
+﻿// Datos y esquemas de los módulos funcionales del Sistema Integral de Gestión Radifax.
+>>>>>>> e97be07 (Fix de vista)
 // Los datos son de ejemplo ("quemados"), tal y como se acordó con el docente: este curso
 // cubre análisis y modelado de requerimientos, no la implementación final con backend real.
 // Cada módulo referencia las historias de usuario del documento AN01 (código entre paréntesis).
 
+<<<<<<< HEAD
+=======
+export const CLIENTS = [
+    "Hotel Los Sueños",
+    "ICT",
+    "Bomberos de Costa Rica",
+    "Marina Pez Vela",
+    "Refinadora Costarricense",
+    "Autobuses San José",
+    "Condominios Trejos Montealegre",
+    "Cooperativa de Taxis Alajuela",
+];
+
+export const INVENTORY_LOCATIONS = [
+    "Bodega San José",
+    "Taller Radifax",
+    "Hotel Los Sueños",
+    "Bomberos de Costa Rica",
+    "ICT",
+    "Marina Pez Vela",
+    "Autobuses San José",
+    "Refinadora Costarricense",
+];
+
+export const EQUIPMENT_MODELS = [
+    { modelo: "Motorola CP200", tipo: "Radio portátil" },
+    { modelo: "Kenwood TK-3170", tipo: "Radio portátil" },
+    { modelo: "Kenwood TK-3401", tipo: "Radio portátil" },
+    { modelo: "Repetidora UHF-40", tipo: "Repetidora" },
+];
+
+export const ROLES = ["Administrador del sistema", "Gerente", "Coordinador técnico", "Técnico", "Vendedor / Ejecutivo de cuenta"];
+
+export const REPORT_TYPES_BY_ROLE = {
+    "Administrador del sistema": ["Contratos por vencer", "Servicios facturados", "Bitácora de tickets", "Valorización de inventario", "Frecuencias próximas a vencer"],
+    "Gerente": ["Contratos por vencer", "Servicios facturados", "Valorización de inventario"],
+    "Coordinador técnico": ["Bitácora de tickets"],
+    "Técnico": ["Bitácora de tickets"],
+    "Vendedor / Ejecutivo de cuenta": ["Contratos por vencer", "Frecuencias próximas a vencer"],
+};
+
+>>>>>>> e97be07 (Fix de vista)
 export const MODULES = [
     {
         id: "usuarios",
@@ -13,6 +59,10 @@ export const MODULES = [
             { label: "Roles definidos", value: "5" },
             { label: "Sesiones hoy", value: "7" },
         ],
+<<<<<<< HEAD
+=======
+        metricsRoles: ["Administrador del sistema", "Gerente"],
+>>>>>>> e97be07 (Fix de vista)
         tabs: [
             {
                 key: "cuentas",
@@ -121,7 +171,11 @@ export const MODULES = [
         ],
         fields: [
             { key: "cliente", label: "Cliente", type: "text", required: true },
+<<<<<<< HEAD
             { key: "equipos", label: "Equipos incluidos", type: "text" },
+=======
+            { key: "equipos", label: "Equipos incluidos", type: "equipment" },
+>>>>>>> e97be07 (Fix de vista)
             { key: "fechaInicio", label: "Fecha de inicio", type: "date" },
             { key: "vence", label: "Fecha de vencimiento", type: "date" },
             { key: "estado", label: "Estado", type: "select", options: ["Activo", "Por vencer", "Vencido", "Cancelado"] },
@@ -150,10 +204,18 @@ export const MODULES = [
             { key: "estado", label: "Estado" },
         ],
         fields: [
+<<<<<<< HEAD
             { key: "modelo", label: "Modelo", type: "text", required: true },
             { key: "categoria", label: "Categoría", type: "select", options: ["Radio portátil", "Repetidora", "Accesorio"] },
             { key: "estado", label: "Estado", type: "select", options: ["Disponible", "Alquilado", "En mantenimiento", "Dado de baja"] },
             { key: "ubicacion", label: "Ubicación", type: "text" },
+=======
+            { key: "serie", label: "Número de serie", type: "text", required: true },
+            { key: "modelo", label: "Modelo", type: "text", required: true },
+            { key: "categoria", label: "Categoría", type: "select", options: ["Radio portátil", "Repetidora", "Accesorio"] },
+            { key: "estado", label: "Estado", type: "select", options: ["Disponible", "Alquilado", "En mantenimiento", "Dado de baja"] },
+            { key: "ubicacion", label: "Ubicación actual", type: "select", options: INVENTORY_LOCATIONS },
+>>>>>>> e97be07 (Fix de vista)
         ],
         seed: [
             { id: "SN-88213", modelo: "Motorola CP200", categoria: "Radio portátil", estado: "Disponible", ubicacion: "Bodega San José" },
@@ -167,12 +229,21 @@ export const MODULES = [
     {
         id: "dashboard",
         label: "Dashboard y reportes",
+<<<<<<< HEAD
         subtitle: "Indicadores gerenciales y reportes exportables (DAR-001 a DAR-011)",
+=======
+        subtitle: "Mis informes y paneles — indicadores y reportes según tu rol (DAR-001 a DAR-011)",
+>>>>>>> e97be07 (Fix de vista)
         metrics: [
             { label: "Ingresos del mes", value: "₡4.2M" },
             { label: "Alertas activas", value: "12" },
             { label: "Tickets abiertos", value: "14" },
         ],
+<<<<<<< HEAD
+=======
+        metricsRoles: ["Administrador del sistema", "Gerente", "Coordinador técnico"],
+        allowCreate: false,
+>>>>>>> e97be07 (Fix de vista)
         columns: [
             { key: "id", label: "Reporte" },
             { key: "periodo", label: "Período" },
@@ -183,6 +254,7 @@ export const MODULES = [
             { key: "tipo", label: "Tipo de reporte", type: "select", options: ["Contratos por vencer", "Servicios facturados", "Bitácora de tickets", "Valorización de inventario", "Frecuencias próximas a vencer"] },
             { key: "periodo", label: "Período", type: "text" },
             { key: "formato", label: "Formato", type: "select", options: ["PDF", "Excel"] },
+<<<<<<< HEAD
         ],
         seed: [
             { id: "Contratos por vencer", periodo: "Julio 2026", formato: "PDF", estado: "Generado" },
@@ -190,12 +262,27 @@ export const MODULES = [
             { id: "Bitácora de tickets", periodo: "Junio 2026", formato: "PDF", estado: "Generado" },
             { id: "Valorización de inventario", periodo: "Q2 2026", formato: "Excel", estado: "Pendiente" },
             { id: "Frecuencias próximas a vencer", periodo: "Agosto 2026", formato: "PDF", estado: "Generado" },
+=======
+            { key: "estado", label: "Estado", type: "select", options: ["Generado", "Compartido"] },
+        ],
+        seed: [
+            { id: "Contratos por vencer", periodo: "Julio 2026", formato: "PDF", estado: "Generado", rolesVisibles: ["Gerente", "Administrador del sistema", "Vendedor / Ejecutivo de cuenta"] },
+            { id: "Servicios facturados", periodo: "Julio 2026", formato: "Excel", estado: "Compartido", rolesVisibles: ["Gerente", "Administrador del sistema"] },
+            { id: "Bitácora de tickets", periodo: "Junio 2026", formato: "PDF", estado: "Generado", rolesVisibles: ["Coordinador técnico", "Administrador del sistema", "Técnico"] },
+            { id: "Valorización de inventario", periodo: "Q2 2026", formato: "Excel", estado: "Generado", rolesVisibles: ["Gerente", "Administrador del sistema"] },
+            { id: "Frecuencias próximas a vencer", periodo: "Agosto 2026", formato: "PDF", estado: "Compartido", rolesVisibles: ["Vendedor / Ejecutivo de cuenta", "Administrador del sistema"] },
+>>>>>>> e97be07 (Fix de vista)
         ],
     },
     {
         id: "ia",
         label: "Agente de inteligencia artificial",
+<<<<<<< HEAD
         subtitle: "Automatización, clasificación y resúmenes (AIA-001 a AIA-011)",
+=======
+        subtitle: "Historial y control del asistente — solo Administrador del sistema (AIA-001 a AIA-011)",
+        adminOnly: true,
+>>>>>>> e97be07 (Fix de vista)
         metrics: [
             { label: "Consultas hoy", value: "23" },
             { label: "Resueltas automáticamente", value: "19" },
@@ -230,6 +317,10 @@ export const MODULES = [
             { label: "En garantía", value: "3" },
             { label: "Pagos pendientes", value: "2" },
         ],
+<<<<<<< HEAD
+=======
+        metricsRoles: ["Administrador del sistema", "Gerente", "Vendedor / Ejecutivo de cuenta"],
+>>>>>>> e97be07 (Fix de vista)
         tabs: [
             {
                 key: "facturas",
@@ -313,21 +404,41 @@ export const MODULES = [
             { key: "id", label: "Gira" },
             { key: "tecnico", label: "Técnico" },
             { key: "clientes", label: "Clientes" },
+<<<<<<< HEAD
+=======
+            { key: "vehiculo", label: "Vehículo" },
+            { key: "costoEstimado", label: "Costo estimado" },
+>>>>>>> e97be07 (Fix de vista)
             { key: "estado", label: "Estado" },
         ],
         fields: [
             { key: "tecnico", label: "Técnico asignado", type: "select", options: ["Ricardo Infante", "Tomás Díaz"] },
+<<<<<<< HEAD
             { key: "clientes", label: "Clientes a visitar", type: "text" },
             { key: "fecha", label: "Fecha programada", type: "date" },
+=======
+            { key: "clientes", label: "Clientes a visitar", type: "multiselect", options: CLIENTS },
+            { key: "fecha", label: "Fecha programada", type: "date" },
+            { key: "vehiculo", label: "Vehículo asignado (placa)", type: "text" },
+            { key: "costoEstimado", label: "Costo aproximado de la gira (₡)", type: "text" },
+>>>>>>> e97be07 (Fix de vista)
             { key: "tipo", label: "Tipo de gira", type: "select", options: ["Regular", "Express"] },
             { key: "estado", label: "Estado", type: "select", options: ["Programada", "En proceso", "Cerrada", "Cancelada"] },
         ],
         seed: [
+<<<<<<< HEAD
             { id: "GIR-014", tecnico: "Tomás Díaz", clientes: "4 clientes", fecha: "2026-07-27", tipo: "Regular", estado: "En proceso" },
             { id: "GIR-013", tecnico: "Ricardo Infante", clientes: "3 clientes", fecha: "2026-07-20", tipo: "Regular", estado: "Cerrada" },
             { id: "GIR-012", tecnico: "Tomás Díaz", clientes: "5 clientes", fecha: "2026-07-13", tipo: "Regular", estado: "Cerrada" },
             { id: "GIR-011", tecnico: "Ricardo Infante", clientes: "1 cliente", fecha: "2026-07-10", tipo: "Express", estado: "Cerrada" },
             { id: "GIR-010", tecnico: "Tomás Díaz", clientes: "2 clientes", fecha: "2026-08-03", tipo: "Regular", estado: "Programada" },
+=======
+            { id: "GIR-014", tecnico: "Tomás Díaz", clientes: "Hotel Los Sueños, ICT, Bomberos de Costa Rica, Marina Pez Vela", vehiculo: "SJB-4521", costoEstimado: "₡38,500", fecha: "2026-07-27", tipo: "Regular", estado: "En proceso" },
+            { id: "GIR-013", tecnico: "Ricardo Infante", clientes: "Refinadora Costarricense, Autobuses San José, Condominios Trejos Montealegre", vehiculo: "CL-118732", costoEstimado: "₡22,000", fecha: "2026-07-20", tipo: "Regular", estado: "Cerrada" },
+            { id: "GIR-012", tecnico: "Tomás Díaz", clientes: "Hotel Los Sueños, ICT, Bomberos de Costa Rica, Marina Pez Vela, Cooperativa de Taxis Alajuela", vehiculo: "SJB-4521", costoEstimado: "₡41,200", fecha: "2026-07-13", tipo: "Regular", estado: "Cerrada" },
+            { id: "GIR-011", tecnico: "Ricardo Infante", clientes: "Bomberos de Costa Rica", vehiculo: "CL-118732", costoEstimado: "₡9,800", fecha: "2026-07-10", tipo: "Express", estado: "Cerrada" },
+            { id: "GIR-010", tecnico: "Tomás Díaz", clientes: "Marina Pez Vela, Refinadora Costarricense", vehiculo: "SJB-4521", costoEstimado: "₡17,300", fecha: "2026-08-03", tipo: "Regular", estado: "Programada" },
+>>>>>>> e97be07 (Fix de vista)
         ],
     },
     {
@@ -360,6 +471,43 @@ export const MODULES = [
         ],
     },
     {
+<<<<<<< HEAD
+=======
+        id: "clientes",
+        label: "Clientes",
+        subtitle: "Empresas cliente activas de Radifax — distinto del CRM de prospectos (GUA / módulo transversal)",
+        metrics: [
+            { label: "Clientes activos", value: "8" },
+            { label: "Con contrato vigente", value: "5" },
+            { label: "Nuevos este trimestre", value: "2" },
+        ],
+        columns: [
+            { key: "id", label: "Empresa" },
+            { key: "contacto", label: "Contacto" },
+            { key: "telefono", label: "Teléfono" },
+            { key: "estado", label: "Estado" },
+        ],
+        fields: [
+            { key: "id", label: "Nombre de la empresa", type: "text", required: true },
+            { key: "contacto", label: "Contacto principal", type: "text" },
+            { key: "correo", label: "Correo", type: "email" },
+            { key: "telefono", label: "Teléfono", type: "tel" },
+            { key: "equiposActivos", label: "Equipos activos", type: "text" },
+            { key: "estado", label: "Estado", type: "select", options: ["Activo", "Inactivo"] },
+        ],
+        seed: [
+            { id: "Hotel Los Sueños", contacto: "Laura Jiménez", correo: "compras@losSuenosResort.com", telefono: "2630-4000", equiposActivos: "12 radios", estado: "Activo" },
+            { id: "ICT", contacto: "Esteban Rojas", correo: "logistica@ict.go.cr", telefono: "2299-5800", equiposActivos: "8 radios", estado: "Activo" },
+            { id: "Bomberos de Costa Rica", contacto: "Cap. Luis Salazar", correo: "operaciones@bomberos.go.cr", telefono: "2210-3232", equiposActivos: "3 repetidoras", estado: "Activo" },
+            { id: "Marina Pez Vela", contacto: "Andrea Solís", correo: "info@marinapezvela.com", telefono: "2777-0000", equiposActivos: "6 radios, 1 repetidora", estado: "Activo" },
+            { id: "Refinadora Costarricense", contacto: "Mario Chacón", correo: "compras@recope.go.cr", telefono: "2545-9200", equiposActivos: "20 radios", estado: "Activo" },
+            { id: "Autobuses San José", contacto: "Vinicio Araya", correo: "flota@autobusessj.cr", telefono: "2222-1010", equiposActivos: "5 radios", estado: "Activo" },
+            { id: "Condominios Trejos Montealegre", contacto: "Silvia Ureña", correo: "administracion@trejosmontealegre.cr", telefono: "2289-1122", equiposActivos: "2 radios", estado: "Inactivo" },
+            { id: "Cooperativa de Taxis Alajuela", contacto: "Franklin Mora", correo: "coopetaxis@alajuela.cr", telefono: "2441-3030", equiposActivos: "—", estado: "Inactivo" },
+        ],
+    },
+    {
+>>>>>>> e97be07 (Fix de vista)
         id: "frecuencias",
         label: "Frecuencias de radio",
         subtitle: "Trámites y control de radiofrecuencias ante el gobierno (RCFR-001 a RCFR-010)",
@@ -392,7 +540,42 @@ export const MODULES = [
 ];
 
 export const STATUS_STYLES = {
+<<<<<<< HEAD
     positive: ["Activo", "Cerrada", "Disponible", "Cobrada", "Resuelto", "Vigente", "Convertido", "Generado", "Completado", "Aplicada"],
     warning: ["Por vencer", "En proceso", "Asignada", "En trámite", "Pendiente", "Recibida", "Programada", "Cotización enviada", "En negociación", "Nuevo", "En espera de repuesto"],
     negative: ["Vencido", "Vencida", "Cancelado", "Cancelada", "Inactivo", "Escalado", "Anulada", "Descartado", "Dado de baja"],
 };
+=======
+    positive: ["Activo", "Cerrada", "Disponible", "Cobrada", "Resuelto", "Vigente", "Convertido", "Generado", "Compartido", "Completado", "Aplicada"],
+    warning: ["Por vencer", "En proceso", "Asignada", "En trámite", "Pendiente", "Recibida", "Programada", "Cotización enviada", "En negociación", "Nuevo", "En espera de repuesto"],
+    negative: ["Vencido", "Vencida", "Cancelado", "Cancelada", "Inactivo", "Escalado", "Anulada", "Descartado", "Dado de baja"],
+};
+
+export const NOTIFICATIONS_BY_ROLE = {
+    "Técnico": [
+        "Se te asignó la boleta BOL-00185 (Bomberos de Costa Rica).",
+        "La gira GIR-014 inicia mañana — revisá los clientes asignados.",
+        "Batería de SN-88214 (Hotel Los Sueños) próxima a cambio.",
+    ],
+    "Coordinador técnico": [
+        "3 boletas sin técnico asignado esta semana.",
+        "La gira GIR-014 está en curso — 1 de 4 clientes visitados.",
+        "BOL-00183 lleva más de 5 días en espera de repuesto.",
+    ],
+    "Vendedor / Ejecutivo de cuenta": [
+        "El prospecto Refinadora Costarricense no tiene seguimiento hace 5 días.",
+        "Cotización de Marina Pez Vela por vencer.",
+        "Frecuencia 467.750 MHz (ICT) está por renovar.",
+    ],
+    "Gerente": [
+        "El contrato CT-0041 vence en 6 días (Bomberos de Costa Rica).",
+        "Reporte de facturación mensual ya está disponible.",
+        "2 facturas pendientes de cobro por más de 30 días.",
+    ],
+    "Administrador del sistema": [
+        "El usuario Henry Ortiz fue desactivado.",
+        "2 consultas del agente de IA fueron escaladas hoy.",
+        "Respaldo automático de base de datos completado.",
+    ],
+};
+>>>>>>> e97be07 (Fix de vista)

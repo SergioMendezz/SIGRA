@@ -14,8 +14,13 @@ const COLORS = {
 
 const FONT = "'Source Serif 4', Georgia, 'Times New Roman', serif";
 
-const VALID_EMAIL = "ricardo.infante@radifaxcr.com";
-const VALID_PASSWORD = "RadifaxCR2026";
+const VALID_USERS = [
+    { email: "ricardo.infante@radifaxcr.com", password: "RadifaxCR2026", name: "Ricardo Infante", role: "Técnico", initials: "RI" },
+    { email: "maria.ceciliano@radifaxcr.com", password: "Coord#2026", name: "María Fernanda Ceciliano", role: "Coordinador técnico", initials: "MC" },
+    { email: "kimberly.sanchez@radifaxcr.com", password: "Ventas#2026", name: "Kimberly Sánchez", role: "Vendedor / Ejecutivo de cuenta", initials: "KS" },
+    { email: "adriana.mora@radifaxcr.com", password: "Gerencia#2026", name: "Adriana Mora Quirós", role: "Gerente", initials: "AM" },
+    { email: "admin@radifaxcr.com", password: "Admin#2026", name: "Administrador Radifax", role: "Administrador del sistema", initials: "AR" },
+];
 
 function Field({ label, type = "text", name, defaultValue, children }) {
     return (
@@ -45,11 +50,20 @@ function LoginForm({ onAuthSuccess, onForgotPassword }) {
         const email = (data.get("email") || "").trim().toLowerCase();
         const password = data.get("password") || "";
 
+<<<<<<< HEAD
         if (email === VALID_EMAIL && password === VALID_PASSWORD) {
             setError("");
             onAuthSuccess({ name: "Ricardo Infante", role: "Técnico", initials: "RI" });
         } else {
             setError("Credenciales incorrectas. Usá el correo y la contraseña precargados.");
+=======
+        const match = VALID_USERS.find((u) => u.email === email && u.password === password);
+        if (match) {
+            setError("");
+            onAuthSuccess({ name: match.name, role: match.role, initials: match.initials });
+        } else {
+            setError("Credenciales incorrectas. Usá alguna de las cuentas de prueba de abajo.");
+>>>>>>> e97be07 (Fix de vista)
         }
     }
 
@@ -80,9 +94,25 @@ function LoginForm({ onAuthSuccess, onForgotPassword }) {
             >
                 Iniciar sesión
             </button>
+<<<<<<< HEAD
             <p className="text-center text-xs mt-5" style={{ color: COLORS.muted }}>
                 Técnico · Departamento Técnico
             </p>
+=======
+
+            <details className="mt-6">
+                <summary className="text-xs cursor-pointer" style={{ color: COLORS.muted }}>
+                    Cuentas de prueba (una por rol)
+                </summary>
+                <ul className="mt-3 space-y-1.5">
+                    {VALID_USERS.map((u) => (
+                        <li key={u.email} className="text-xs" style={{ color: COLORS.muted }}>
+                            <span style={{ color: COLORS.charcoal, fontWeight: 600 }}>{u.role}:</span> {u.email} / {u.password}
+                        </li>
+                    ))}
+                </ul>
+            </details>
+>>>>>>> e97be07 (Fix de vista)
         </form>
     );
 }

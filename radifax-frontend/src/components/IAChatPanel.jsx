@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 ﻿import { useState } from "react";
 import { Sparkles, Send } from "lucide-react";
+=======
+import { useState } from "react";
+import { Sparkles, Send, X } from "lucide-react";
+>>>>>>> e97be07 (Fix de vista)
 
 const COLORS = {
     green: "#5EB453",
@@ -44,6 +49,10 @@ function findAnswer(text) {
 }
 
 export default function IAChatPanel() {
+<<<<<<< HEAD
+=======
+    const [open, setOpen] = useState(false);
+>>>>>>> e97be07 (Fix de vista)
     const [messages, setMessages] = useState([
         { role: "ai", text: "Hola, soy el asistente de Radifax. Puedo resumirte boletas, contratos y reportes en lenguaje natural. ¿En qué te ayudo?" },
     ]);
@@ -56,6 +65,7 @@ export default function IAChatPanel() {
         setInput("");
     }
 
+<<<<<<< HEAD
     return (
         <div className="rounded-xl mb-8" style={{ border: `1px solid ${COLORS.border}` }}>
             <div className="flex items-center gap-2 px-5 py-3" style={{ borderBottom: `1px solid ${COLORS.border}`, backgroundColor: COLORS.greenTint }}>
@@ -68,6 +78,46 @@ export default function IAChatPanel() {
             <div className="px-5 py-4 flex flex-col gap-3 max-h-72 overflow-y-auto">
                 {messages.map((m, i) => (
                     <div key={i} className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm ${m.role === "user" ? "self-end" : "self-start"}`} style={{ backgroundColor: m.role === "user" ? COLORS.green : COLORS.greenTint, color: m.role === "user" ? COLORS.white : COLORS.charcoal }}>
+=======
+    if (!open) {
+        return (
+            <button
+                type="button"
+                onClick={() => setOpen(true)}
+                className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full flex items-center justify-center"
+                style={{ backgroundColor: COLORS.green, border: "none", boxShadow: "0 6px 18px rgba(94,180,83,0.45)" }}
+                aria-label="Abrir asistente de Radifax"
+            >
+                <Sparkles size={22} color={COLORS.white} />
+            </button>
+        );
+    }
+
+    return (
+        <div
+            className="fixed bottom-6 right-6 z-40 w-96 rounded-2xl overflow-hidden flex flex-col"
+            style={{ border: `1px solid ${COLORS.border}`, backgroundColor: COLORS.white, boxShadow: "0 16px 40px rgba(50,50,50,0.22)", maxHeight: "32rem" }}
+        >
+            <div className="flex items-center justify-between gap-2 px-5 py-3" style={{ borderBottom: `1px solid ${COLORS.border}`, backgroundColor: COLORS.greenTint }}>
+                <div className="flex items-center gap-2">
+                    <Sparkles size={16} color={COLORS.green} />
+                    <span className="text-sm" style={{ color: COLORS.charcoal, fontWeight: 600 }}>
+                        Asistente Radifax
+                    </span>
+                </div>
+                <button type="button" onClick={() => setOpen(false)} aria-label="Cerrar asistente" style={{ color: COLORS.muted }}>
+                    <X size={17} />
+                </button>
+            </div>
+
+            <div className="px-5 py-4 flex flex-col gap-3 overflow-y-auto" style={{ flex: 1 }}>
+                {messages.map((m, i) => (
+                    <div
+                        key={i}
+                        className={`max-w-[85%] px-4 py-2.5 rounded-2xl text-sm ${m.role === "user" ? "self-end" : "self-start"}`}
+                        style={{ backgroundColor: m.role === "user" ? COLORS.green : COLORS.greenTint, color: m.role === "user" ? COLORS.white : COLORS.charcoal }}
+                    >
+>>>>>>> e97be07 (Fix de vista)
                         {m.text}
                     </div>
                 ))}
@@ -108,4 +158,8 @@ export default function IAChatPanel() {
             </form>
         </div>
     );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e97be07 (Fix de vista)

@@ -10,11 +10,20 @@ import {
     FileText,
     Route,
     Handshake,
+<<<<<<< HEAD
+=======
+    Building2,
+>>>>>>> e97be07 (Fix de vista)
     Waves,
     LogOut,
 } from "lucide-react";
 import { MODULES } from "../data/modules";
 import ModuleView from "../components/ModuleView";
+<<<<<<< HEAD
+=======
+import NotificationsBell from "../components/NotificationsBell";
+import IAChatPanel from "../components/IAChatPanel";
+>>>>>>> e97be07 (Fix de vista)
 
 const COLORS = {
     green: "#5EB453",
@@ -38,10 +47,19 @@ const ICONS = {
     contratos: FileText,
     giras: Route,
     crm: Handshake,
+<<<<<<< HEAD
+=======
+    clientes: Building2,
+>>>>>>> e97be07 (Fix de vista)
     frecuencias: Waves,
 };
 
 function Sidebar({ active, onSelect, user, onLogout }) {
+<<<<<<< HEAD
+=======
+    const visibleModules = MODULES.filter((m) => !m.adminOnly || user.role === "Administrador del sistema");
+
+>>>>>>> e97be07 (Fix de vista)
     return (
         <aside
             className="w-72 shrink-0 h-screen sticky top-0 flex flex-col px-5 py-6"
@@ -88,7 +106,11 @@ function Sidebar({ active, onSelect, user, onLogout }) {
                     Inicio
                 </button>
 
+<<<<<<< HEAD
                 {MODULES.map((m) => {
+=======
+                {visibleModules.map((m) => {
+>>>>>>> e97be07 (Fix de vista)
                     const Icon = ICONS[m.id];
                     const isActive = active === m.id;
                     return (
@@ -168,7 +190,20 @@ export default function Dashboard({ user, onLogout }) {
         @import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600&display=swap');
       `}</style>
             <Sidebar active={active} onSelect={setActive} user={user} onLogout={onLogout} />
+<<<<<<< HEAD
             {currentModule ? <ModuleView module={currentModule} Icon={ICONS[currentModule.id]} key={currentModule.id} /> : <Welcome user={user} />}
         </div>
     );
 }
+=======
+            {currentModule ? (
+                <ModuleView module={currentModule} Icon={ICONS[currentModule.id]} user={user} key={currentModule.id} />
+            ) : (
+                <Welcome user={user} />
+            )}
+            <NotificationsBell role={user.role} />
+            <IAChatPanel />
+        </div>
+    );
+}
+>>>>>>> e97be07 (Fix de vista)
