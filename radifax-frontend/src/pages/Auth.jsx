@@ -50,20 +50,14 @@ function LoginForm({ onAuthSuccess, onForgotPassword }) {
         const email = (data.get("email") || "").trim().toLowerCase();
         const password = data.get("password") || "";
 
-<<<<<<< HEAD
-        if (email === VALID_EMAIL && password === VALID_PASSWORD) {
-            setError("");
-            onAuthSuccess({ name: "Ricardo Infante", role: "Técnico", initials: "RI" });
-        } else {
-            setError("Credenciales incorrectas. Usá el correo y la contraseña precargados.");
-=======
+
         const match = VALID_USERS.find((u) => u.email === email && u.password === password);
         if (match) {
             setError("");
             onAuthSuccess({ name: match.name, role: match.role, initials: match.initials });
         } else {
             setError("Credenciales incorrectas. Usá alguna de las cuentas de prueba de abajo.");
->>>>>>> e97be07 (Fix de vista)
+
         }
     }
 
@@ -94,10 +88,7 @@ function LoginForm({ onAuthSuccess, onForgotPassword }) {
             >
                 Iniciar sesión
             </button>
-<<<<<<< HEAD
-            <p className="text-center text-xs mt-5" style={{ color: COLORS.muted }}>
-                Técnico · Departamento Técnico
-            </p>
+
 =======
 
             <details className="mt-6">
@@ -112,7 +103,7 @@ function LoginForm({ onAuthSuccess, onForgotPassword }) {
                     ))}
                 </ul>
             </details>
->>>>>>> e97be07 (Fix de vista)
+
         </form>
     );
 }

@@ -1,10 +1,8 @@
-<<<<<<< HEAD
-﻿import { useState } from "react";
-=======
+
 import { useState } from "react";
 import Modal from "./Modal";
 import { EQUIPMENT_MODELS } from "../data/modules";
->>>>>>> e97be07 (Fix de vista)
+
 
 const COLORS = {
     green: "#5EB453",
@@ -14,18 +12,14 @@ const COLORS = {
     charcoal: "#323232",
     muted: "#6E6E6E",
     border: "#E3E3E3",
-<<<<<<< HEAD
-=======
     red: "#C0392B",
->>>>>>> e97be07 (Fix de vista)
+
 };
 
 function inputClass() {
     return "w-full px-3.5 py-2.5 rounded-lg text-sm bg-white outline-none";
 }
 
-<<<<<<< HEAD
-=======
 function parseSummary(summary) {
     // Intenta reconstruir líneas { modelo, cantidad, series } a partir del texto guardado,
     // para poder reabrir el modal y seguir editando. Si no coincide el formato, arranca vacío.
@@ -224,7 +218,7 @@ function MultiSelectField({ options, value, onChange }) {
     );
 }
 
->>>>>>> e97be07 (Fix de vista)
+
 export default function RecordForm({ fields, initialValues = {}, onSubmit, onCancel, submitLabel = "Guardar" }) {
     const [values, setValues] = useState(() => {
         const base = {};
@@ -247,17 +241,11 @@ export default function RecordForm({ fields, initialValues = {}, onSubmit, onCan
         <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 {fields.map((f) => (
-<<<<<<< HEAD
-                    <label key={f.key} className={f.type === "textarea" ? "sm:col-span-2 block" : "block"}>
-                        <span className="block text-xs mb-1.5" style={{ color: COLORS.charcoal }}>
-                            {f.label}
-                            {f.required && <span style={{ color: "#C0392B" }}> *</span>}
-=======
                     <label key={f.key} className={f.type === "textarea" || f.type === "equipment" || f.type === "multiselect" ? "sm:col-span-2 block" : "block"}>
                         <span className="block text-xs mb-1.5" style={{ color: COLORS.charcoal }}>
                             {f.label}
                             {f.required && <span style={{ color: COLORS.red }}> *</span>}
->>>>>>> e97be07 (Fix de vista)
+
                         </span>
                         {f.type === "select" ? (
                             <select
@@ -285,13 +273,10 @@ export default function RecordForm({ fields, initialValues = {}, onSubmit, onCan
                                 className={inputClass()}
                                 style={{ border: `1px solid ${COLORS.border}`, color: COLORS.charcoal }}
                             />
-<<<<<<< HEAD
-=======
                         ) : f.type === "equipment" ? (
                             <EquipmentField value={values[f.key]} onChange={(v) => update(f.key, v)} />
                         ) : f.type === "multiselect" ? (
                             <MultiSelectField options={f.options} value={values[f.key]} onChange={(v) => update(f.key, v)} />
->>>>>>> e97be07 (Fix de vista)
                         ) : (
                             <input
                                 type={f.type || "text"}
@@ -320,8 +305,5 @@ export default function RecordForm({ fields, initialValues = {}, onSubmit, onCan
             </div>
         </form>
     );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> e97be07 (Fix de vista)
+
