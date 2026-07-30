@@ -1,10 +1,12 @@
 
 import { useState } from "react";
+import { List, Calendar as CalendarIcon } from "lucide-react";
 import EntityPanel from "./EntityPanel";
 import Modal from "./Modal";
 import RecordForm from "./RecordForm";
+import GirasCalendar from "./GirasCalendar";
+import StatusBadge from "./StatusBadge";
 import { REPORT_TYPES_BY_ROLE } from "../data/modules";
-
 
 const COLORS = {
     green: "#5EB453",
@@ -155,6 +157,8 @@ export default function ModuleView({ module, Icon, user }) {
     const [singleRows, setSingleRows] = useState(() => (hasTabs ? [] : module.seed ?? []));
     const [activeTab, setActiveTab] = useState(hasTabs ? module.tabs[0].key : null);
     const [templateDraft, setTemplateDraft] = useState(null);
+    const [girasView, setGirasView] = useState("lista");
+    const [calendarGira, setCalendarGira] = useState(null);
 
     const currentTab = hasTabs ? module.tabs.find((t) => t.key === activeTab) ?? module.tabs[0] : null;
 
@@ -248,8 +252,43 @@ export default function ModuleView({ module, Icon, user }) {
 
             {module.id === "giras" && <RouteMapPreview />}
 
+            {module.id === "giras" && (
+                <div className="flex items-center gap-2 mb-4">
+                    <button
+                        type="button"
+                        onClick={() => setGirasView("lista")}
+                        className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs"
+                        style={{
+                            border: `1px solid ${COLORS.border}`,
+                            backgroundColor: girasView === "lista" ? COLORS.greenTint : "transparent",
+                            color: girasView === "lista" ? COLORS.green : COLORS.muted,
+                            fontWeight: girasView === "lista" ? 600 : 400,
+                        }}
+                    >
+                        <List size={14} />
+                        Lista
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setGirasView("calendario")}
+                        className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg text-xs"
+                        style={{
+                            border: `1px solid ${COLORS.border}`,
+                            backgroundColor: girasView === "calendario" ? COLORS.greenTint : "transparent",
+                            color: girasView === "calendario" ? COLORS.green : COLORS.muted,
+                            fontWeight: girasView === "calendario" ? 600 : 400,
+                        }}
+                    >
+                        <CalendarIcon size={14} />
+                        Calendario
+                    </button>
+                </div>
+            )}
 
-            {hasTabs ? (
+
+            {module.id === "giras" && girasView === "calendario" ? (
+                <GirasCalendar rows={singleRows} onRowsChange={setSingleRows} onSelectGira={setCalendarGira} />
+            ) : hasTabs ? (
                 <>
                     <TabSwitcher tabs={module.tabs} active={currentTab.key} onSelect={setActiveTab} />
                     <EntityPanel
@@ -286,7 +325,55 @@ export default function ModuleView({ module, Icon, user }) {
             {templateDraft && facturasFields && (
                 <TemplateDocumentModal plantilla={templateDraft} fields={facturasFields} onClose={() => setTemplateDraft(null)} onSubmit={handleCreateFromTemplate} />
             )}
+
+            <Modal open={!!calendarGira} onClose={() => setCalendarGira(null)} title={calendarGira?.id ?? "Gira"} subtitle="Vista rápida desde el calendario">
+                {calendarGira && (
+                    <div>
+                        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 mb-6">
+                            <div>
+                                <dt className="text-xs mb-1" style={{ color: COLORS.muted }}>Técnico asignado</dt>
+                                <dd className="text-sm" style={{ color: COLORS.charcoal }}>{calendarGira.tecnico || "—"}</dd>
+                            </div>
+                            <div>
+                                <dt className="text-xs mb-1" style={{ color: COLORS.muted }}>Fecha programada</dt>
+                                <dd className="text-sm" style={{ color: COLORS.charcoal }}>{calendarGira.fecha || "—"}</dd>
+                            </div>
+                            <div>
+                                <dt className="text-xs mb-1" style={{ color: COLORS.muted }}>Vehículo</dt>
+                                <dd className="text-sm" style={{ color: COLORS.charcoal }}>{calendarGira.vehiculo || "—"}</dd>
+                            </div>
+                            <div>
+                                <dt className="text-xs mb-1" style={{ color: COLORS.muted }}>Costo estimado</dt>
+                                <dd className="text-sm" style={{ color: COLORS.charcoal }}>{calendarGira.costoEstimado || "—"}</dd>
+                            </div>
+                            <div className="sm:col-span-2">
+                                <dt className="text-xs mb-1" style={{ color: COLORS.muted }}>Clientes a visitar</dt>
+                                <dd className="text-sm" style={{ color: COLORS.charcoal }}>{calendarGira.clientes || "—"}</dd>
+                            </div>
+                            <div>
+                                <dt className="text-xs mb-1" style={{ color: COLORS.muted }}>Estado</dt>
+                                <dd className="text-sm"><StatusBadge value={calendarGira.estado} /></dd>
+                            </div>
+                        </dl>
+                        <div className="flex justify-end gap-3 pt-4" style={{ borderTop: `1px solid ${COLORS.border}` }}>
+                            <button type="button" onClick={() => setCalendarGira(null)} className="px-4 py-2.5 rounded-lg text-sm" style={{ color: COLORS.muted }}>
+                                Cerrar
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setGirasView("lista");
+                                    setCalendarGira(null);
+                                }}
+                                className="px-5 py-2.5 rounded-lg text-sm font-medium"
+                                style={{ backgroundColor: COLORS.green, color: "#FFFFFF", border: "none" }}
+                            >
+                                Ver en la lista
+                            </button>
+                        </div>
+                    </div>
+                )}
+            </Modal>
         </div>
     );
 }
-
